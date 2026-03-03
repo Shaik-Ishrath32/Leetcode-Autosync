@@ -1,21 +1,19 @@
 class Solution {
     public int sumOddLengthSubarrays(int[] arr) {
         int n = arr.length;
-        int total = 0;
-        for(int i=0;i<n;i++){
-            for(int j=i;j<n;j++){
-                int length = j-i+1;
-                if(length%2 == 1){
-                    int subsum = 0;
+        int totalSum = 0;
 
-                    for(int k=i;k<=j;k++){
-                        subsum += arr[k];
-                    }
-                    total += subsum;
-                }
-            }
+        for (int i = 0; i < n; i++) {
+            // total subarrays including arr[i]
+            int totalSubarrays = (i + 1) * (n - i);
+
+            // odd subarrays count
+            int oddCount = (totalSubarrays + 1) / 2;
+
+            // contribution of arr[i]
+            totalSum += arr[i] * oddCount;
         }
-        return total;
 
+        return totalSum;
     }
 }
